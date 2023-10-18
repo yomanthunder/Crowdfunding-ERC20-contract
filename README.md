@@ -7,4 +7,3 @@ what if the same address donates to multiple different campaigns?
 
 I am currently working on this basic project 
 
-
