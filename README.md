@@ -6,4 +6,4 @@ what if the same address donates multiple times?
 what if the same address donates to multiple different campaigns?
 
 I am currently working on this basic project 
-
+My main motive is to learn to write smart contracts using solidity more efficienty 
