@@ -32,7 +32,7 @@ function BasicNavbar() {
             <Nav.Link href="/About">About</Nav.Link>
             <NavDropdown title="Champaings" id="basic-nav-dropdown">
               <NavDropdown.Item href="/Active_campaign">Active campaign</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2"> Create campaign</NavDropdown.Item>
+              <NavDropdown.Item href="/Create_campaign"> Create campaign</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Buy Tokens </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">Contact us</NavDropdown.Item>
