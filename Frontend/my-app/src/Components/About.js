@@ -1,92 +1,70 @@
 import { React, Fragment } from "react";
-
+import "./About.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function About() {
+  let message = 'Hardworked CrowdFund Project';
   return (
-    <Fragment>
-      <section className="about">
-        <div className="row">
-          <div className="column">
-            <div className="about-img"></div>
-          </div>
-
-          <div className="column">
-            <div className="tabs">
-              <div className="single-tab">
-                <h2>About</h2>
-              </div>
-              <div className="single-tab">
-                <h2>Skills</h2>
-              </div>
-              <div className="single-tab">
-                <h2>Experience</h2>
-              </div>
+    <section className="section-white" style={{ marginTop: "3.5rem" }}>
+           <div className="container">
+            <div className="row">
+            
+            <div className="col-md-12 text-centre">
+                <h2 className="section-title">
+                     The Team behind CrowdFund
+                </h2>
+                <p className="section-subtitle">{message}</p>
+            </div>
+            <div className="col-sm-6 col-md-4">
+              <div className="team-item">
+                <img src="images/self.jpg" alt="pic" className="team-img" width={"300"} height={"300"}/>
+                <h3>Shrishvesh Reddy</h3>
+                <div className="team-info">
+                  <p>Frontend developer, integrator and smart contract developer</p>
+                  <p>
+                  Skilled in HTML, CSS, and JavaScript, I've delivered web projects. Proficient in MERN stack. Blockchain knowledge via courses & Solidity expertise. Led a Crowdfunding project (2023) with smart contracts and React. Actively participating in hackathons.
+                  </p>
+                  <ul classname="team-icon">
+                    <li><a href="#"><i className="fa fa-github"></i></a>github</li>
+                  </ul>
+                  <ul classname="team-icon">
+                    <li><a href="#"><i className="fa fa-Twitter"></i></a>Twitter</li>
+                  </ul>
+                  <ul classname="team-icon">
+                    <li><a href="#"><i className="fa fa-Linkedin"></i></a>Linkedin</li>
+                  </ul>
+                </div>
+                </div>
+            </div>
+            <div className="col-sm-6 col-md-4">
+              <div className="team-item">
+                <img src="images/partner.jpg" alt="pic" className="team-img" width={"300"} height={"300"}/>
+                <h3>Lakshay Data</h3>
+                <div className="team-info">
+                  <p> smart contract developer</p>
+                  <p>
+                  Solidity expertise. Led a Crowdfunding project (2023) with smart contracts and React. Actively participating in hackathons.
+                  </p>
+                  <ul classname="team-icon">
+                    <li><a href="#"><i className="fa fa-github"></i></a> github</li>
+                  </ul>
+                  <ul classname="team-icon">
+                    <li><a href="#"><i className="fa fa-Twitter"></i></a>Twitter</li>
+                  </ul>
+                  <ul classname="team-icon">
+                    <li><a href="#"><i className="fa fa-Linkedin"></i></a>Linkedin</li>
+                  </ul>
+                </div>
+                </div>
             </div>
 
-            <div className="tab-content">
-              {/* About Content  */}
-              <div className="content">
-                <h2>My Story</h2>
-                <p>
-                  ibeiv liehrvijberbvojwb vh vhwc hjwbco whjc jw vc owc jw ;
-                  wvjc ;w j wkv j kv e chb jwj ckjw dm wjbd k wj jw wh lj j kw h
-                  wklmd kwm cj lwj cjb kjn jgdc sk when huekvh keh lknebjvh jleb
-                  vjlefn
-                </p>
-                <h3>I am Web developerand smart contracts engineer</h3>
-                <p>
-                  ibeiv liehrvijberbvojwb vh vhwc hjwbco whjc jw vc owc jw ;
-                  wvjc ;w j wkv j kv e chb jwj ckjw dm wjbd k wj jw wh lj j kw h
-                  wklmd kwm cj lwj cjb kjn jgdc sk when huekvh keh lknebjvh jleb
-                  vjlefn
-                </p>
-              </div>
-              {/* Skill content  */}
-              <h2>My Skill</h2>
-              <p>
-                ibeiv liehrvijberbvojwb vh vhwc hjwbco whjc jw vc owc jw ; wvjc
-                ;w j wkv j kv e chb jwj ckjw dm wjbd k wj jw wh lj j kw h wklmd
-                kwm cj lwj cjb kjn jgdc sk when huekvh keh lknebjvh jleb vjlefn
-              </p>
-              <div className="skills-row">
-                <div className="skill-column">
-                  <div className="progess-wrap">
-                    <h3>Developer</h3>
-                    <div className="progress">
-                      <div className="progess-bar">
-                        <span>80%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                <div className="skill-column">
-                  <div className="progess-wrap">
-                    <h3>smartcontract</h3>
-                    <div className="progress">
-                      <div className="progess-bar">
-                        <span>70%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="skill-column">
-                  <div className="progess-wrap">
-                    <h3>Design</h3>
-                    <div className="progress">
-                      <div className="progess-bar">
-                        <span>30%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+
             </div>
-          </div>
-        </div>
-      </section>
-    </Fragment>
+           </div>
+        </section>
+
   );
 }
 export default About;

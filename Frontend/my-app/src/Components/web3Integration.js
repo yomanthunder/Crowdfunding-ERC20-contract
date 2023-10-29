@@ -6,7 +6,7 @@ import { getDatabase, ref, set } from "firebase/database";
 
 const db = getDatabase(app);//creatting an insance of firebase
 const ethers = require('ethers');
-const contractAddress = '0xd20E65b1fc54300b098869510336f044A7352690';
+const contractAddress = '0x927E87dCEC4c8BdEAEB847AA151370C403C4349E';
 
 
 function Integration({ l, setl }) {
@@ -52,7 +52,7 @@ function Integration({ l, setl }) {
           
           
 
-      const loadData = async () => {
+      const DoWithdraw = async () => {
         if (window.ethereum) {
           try {
             await window.ethereum.enable(); // Request user permission
@@ -61,9 +61,8 @@ function Integration({ l, setl }) {
             const contract = new ethers.Contract(newcampaignaddress, ContractABI1, provider);
             const gasLimit = 200000; // You can adjust this value as needed
 
-            const donation = await contract.connect(signer).Donate({
+            const Withdraw = await contract.connect(signer).withdraw({
               gasLimit,
-              value: amount,
             });
 
             
@@ -117,13 +116,7 @@ function Integration({ l, setl }) {
     return (
         <div className="login template d-flex justify-content-center align-items-center  vh-50 ">
             <div className="form-container p-5 rounded bg-light vh-50">
-            {/* <input
-        type="text"
-        placeholder="Enter amount (ETH)"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-      /> */}
-      {/* <button onClick={loadData}>Donate</button> */}
+
             <form onSubmit={handleSubmit}>
                 <div className="mb-3 mx-auto">
                 <label className='px-3' htmlFor="goal">goal</label>
@@ -159,6 +152,11 @@ function Integration({ l, setl }) {
                 </div>
                 <button type='submit' className='mx-auto btn btn-primary'>Send data</button>
                 <button className="mx-3 btn btn-warning" onClick={putData}>put data</button>
+                <input
+        type="text"
+        className='mb-3 btn btn-Danger'
+      /> 
+       <button onClick={DoWithdraw}>Withdraw</button>
             </form>
            
             </div>
