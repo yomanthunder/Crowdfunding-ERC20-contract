@@ -24,7 +24,7 @@ function App() {
         <Route  path="/home" element={<Home />}></Route>
         <Route  path="/About" element={<About />}></Route>
         <Route  path="/Active_campaign" element={<Champcard glArr={l}/>}></Route>
-        // send two values to the FirebaseImageUpload l and set l both as props
+        {/* send two values to the FirebaseImageUpload l and set l both as props*/}
         <Route  path="/Create_campaign" element={<FirebaseImageUpload l={l} setl={setl}/>}></Route>
       </Routes>
       < BasicNavbar/>

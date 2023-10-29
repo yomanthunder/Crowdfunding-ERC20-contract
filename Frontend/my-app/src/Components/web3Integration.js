@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import ContractABI from './ABI.json';
 import ContractABI1 from './ABI1.json';
 import { app } from "./Firebase";
+import { getDatabase, ref, set } from "firebase/database";
 
+const db = getDatabase(app);//creatting an insance of firebase
 const ethers = require('ethers');
-
 const contractAddress = '0xd20E65b1fc54300b098869510336f044A7352690';
 
+
 function Integration({ l, setl }) {
+    const [prevArray, setPrevArray] = useState([]);
     console.log(l)
     // setl([...l,'b']);
     
@@ -17,7 +20,37 @@ function Integration({ l, setl }) {
     const [minimumFund, setMinimumFund] = useState('');
     const [newcampaignaddress, setNewCampaignsddress] = useState('');
     console.log(newcampaignaddress)
-
+    
+    const putData =()=>{
+        // set(ref(db,"user/shrish"),{
+        //     id :1,
+        //     name : "shrish",
+        //     age : 25,
+        //     param:"hello",
+        //     array:l
+        // })
+            let storedArray = window.localStorage.getItem('array');
+            if (storedArray) {
+              // Parse the stored array from the JSON string
+              storedArray = JSON.parse(storedArray);
+            } else {
+              storedArray = []; // Initialize as an empty array if it doesn't exist in local storage
+            }
+          
+            // Concatenate the new value 'l' to the stored array
+            storedArray = storedArray.concat(l);
+          
+            // Store the updated array in local storage as a JSON string
+            localStorage.setItem('array', JSON.stringify(storedArray));
+          
+            // Update the state with the modified stored array
+            setPrevArray(storedArray);
+          
+            console.log(prevArray);
+          };
+          
+          
+          
 
       const loadData = async () => {
         if (window.ethereum) {
@@ -82,22 +115,28 @@ function Integration({ l, setl }) {
     }
 
     return (
-        <div className="App d-flex justify-content-center align-items-center flex-column">
-            <input
+        <div className="login template d-flex justify-content-center align-items-center  vh-50 ">
+            <div className="form-container p-5 rounded bg-light vh-50">
+            {/* <input
         type="text"
         placeholder="Enter amount (ETH)"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
-      />
-      <button onClick={loadData}>Donate</button>
+      /> */}
+      {/* <button onClick={loadData}>Donate</button> */}
             <form onSubmit={handleSubmit}>
+                <div className="mb-3 mx-auto">
+                <label className='px-3' htmlFor="goal">goal</label>
                 <input
                     type="text"
-                    placeholder="Enter goal amount in ETH"
+                    placeholder="Enter goal amount in wei"
                     defaultValue={goal}
                     name='goal'
                     id='goal'
                 />
+                </div>
+                <div className="mb-3  mx-auto flex-column">
+                <label className='px-3' htmlFor="deadline">deadline</label>
                 <input
                     type="text"
                     placeholder="Enter deadline in seconds "
@@ -106,16 +145,23 @@ function Integration({ l, setl }) {
                     name='deadline'
                     id='deadline'
                 />
+                </div>
+                <div  className="mb-3 mx-auto mx-2">
+                <label className='px-3' htmlFor="minimumfund">minimumFund</label>
                 <input
                     type="text"
-                    placeholder="Enter amount (ETH)"
+                    placeholder="Enter amount wei "
                     defaultValue={minimumFund}
                     // onChange={(e) => setMinimumFund(e.target.value)}
                     name='minimumFund'
                     id='minimumFund'
                 />
-                <button type='submit'>Send data</button>
+                </div>
+                <button type='submit' className='mx-auto btn btn-primary'>Send data</button>
+                <button className="mx-3 btn btn-warning" onClick={putData}>put data</button>
             </form>
+           
+            </div>
         </div>
     );
 }

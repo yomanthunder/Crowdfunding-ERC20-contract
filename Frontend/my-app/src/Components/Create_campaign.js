@@ -13,7 +13,7 @@ function FirebaseImageUpload({ l, setl }) {
   const [renderedImages, setRenderedImages] = useState([]);
 
   const Uploadclick = () => {
-    const imgRef = ref(imagedb, 'files/$(');
+    const imgRef = ref(imagedb, 'files/$');
     uploadBytes(imgRef, file);
   };
 
@@ -42,7 +42,7 @@ function FirebaseImageUpload({ l, setl }) {
       <div className="App d-flex justify-content-center align-items-center flex-row mr-5" style={{ margin: '100px' }}>
         <div >
           <input type="file" onChange={(e) => setimage(e.target.files[0])} />
-          <button class="btn btn-danger" >Upload</button>
+          <button class="btn btn-danger" onClick={Uploadclick} >Upload</button>
         </div>
         <div>
           {renderedImages}

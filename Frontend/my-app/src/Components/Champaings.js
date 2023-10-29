@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import config from './Config.json';
-import X from '../images/X.svg';
-import git from '../images/git.png';
-import linkedin from '../images/linkedin.png';
 import ContractABI from './ABI.json';
 import ContractABI1 from './ABI1.json';
+import { app } from "./Firebase";
+import { getDatabase, ref, set } from "firebase/database";
 const ethers = require('ethers');
 
 
 let cardArr = config;
+
+const storedArray = JSON.parse(localStorage.getItem('array'));
+console.log(storedArray)
+console.log(storedArray[0])
 function Champcard({glArr}) {
-   let newcampaignaddress=glArr[0];
-  console.log(newcampaignaddress)
+   let newcampaignaddress=storedArray[0];
   const [amount, setAmount] = useState('');
   const loadData = async () => {
     if (window.ethereum) {
@@ -48,7 +50,7 @@ function Champcard({glArr}) {
     {cardArr.map( (eachcard,index) => (
       <div key={index} style={{ width: '33.33%', padding: '30px', boxSizing: 'border-box', float: 'left'}}>
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src='X.png' />
+          <Card.Img variant="top" src='./images/solo.png' />
           <Card.Body>
             <Card.Title>{eachcard.title}</Card.Title>
             <Card.Text>
