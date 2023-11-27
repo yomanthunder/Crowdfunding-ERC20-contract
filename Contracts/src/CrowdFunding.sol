@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-// lakshay code 
 
 pragma solidity ^0.8.19;
 
@@ -15,30 +14,37 @@ string private i_reason;
 
 event SuccessfullyDonated(address indexed donar);
 event SuccessfullyWithdrawn(address indexed owner);
+event SuccessfullyContractCreated();
 
-constructor(uint256 goal, uint256 deadline, uint256 minimumFund, string memory reason){
+constructor(uint256 goal, uint256 deadline, uint256 minimumFund ){
     i_goal = goal;
     i_deadline = deadline;
     i_whoNeedFund = payable(msg.sender);
     i_minimumFund = minimumFund; 
     i_TimeOfStart = block.timestamp;
-    i_reason = reason;//we will show this reason on donate page.
+    InitialiseContract();
 }
  
-  function Donate() public payable /returns/{
+  function InitialiseContract() internal {
+   emit SuccessfullyContractCreated();
+  }
+  uint256 totalAmount = 0 ;
+  function Donate() external payable /*returns*/{
     require(block.timestamp <= i_TimeOfStart + i_deadline, "Donations are closed");
     require(msg.value >= i_minimumFund,"Please Donate Some More Amount");
-    
+    totalAmount =totalAmount + msg.value;
     s_addressToAmountFunded[msg.sender] += msg.value;
     s_funders.push(msg.sender);
     emit SuccessfullyDonated(msg.sender);
   }
     
     //fallback function
-    receive() external payable {
+  receive() external payable {
         revert("This contract does not accept direct Ether transfers.");
-    }
+  }
+
   function withdraw() external payable {
+    require(block.timestamp >= i_deadline , "Deadline not reached");
     require(i_whoNeedFund == msg.sender, "You cannot withdraw funds.");
 
         (bool success,) = i_whoNeedFund.call{value: address(this).balance}("");
@@ -46,7 +52,12 @@ constructor(uint256 goal, uint256 deadline, uint256 minimumFund, string memory r
          emit SuccessfullyWithdrawn(msg.sender);
   }
 
-function get_s_funders(uint256 index) external returns(address donar){
-  return s_funders[index];
-}
+  function get_s_funders(uint256 index) external view returns(address donar){
+     return s_funders[index];
+  }
+
+  
+  function get_total_amount_funded() external view returns(uint256){
+     return totalAmount;
+  }
 }
