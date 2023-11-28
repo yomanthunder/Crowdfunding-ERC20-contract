@@ -7,3 +7,6 @@ what if the same address donates to multiple different campaigns?
 
 I am currently working on this basic project 
 My main motive is to learn to write smart contracts using solidity more efficienty 
+
+# The video to the complete project is given below 
+'https://www.youtube.com/watch?v=smR96_pH7FI'
